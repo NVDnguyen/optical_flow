@@ -1,7 +1,7 @@
 change G++ path in Makefile
 
 ```shell
-# build with cmake
+# build
 C:\msys64\usr\bin\make.exe # change to your path
 
 # run
