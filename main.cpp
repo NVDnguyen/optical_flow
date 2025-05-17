@@ -185,11 +185,15 @@ int lucas_kanade_pyramid(unsigned char **pyr1, unsigned char **pyr2, int **gradx
     return 1;
 }
 
-int main() {
-    // Đọc hai khung hình
+int main(int argc, char *argv[]) {
+
+    if (argc != 3) {
+        printf("Usage: %s <image1_path> <image2_path>\n", argv[0]);
+        return -1;
+    }
     int width, height, channels;
-    unsigned char *img1 = stbi_load("frame1.jpg", &width, &height, &channels, 3);
-    unsigned char *img2 = stbi_load("frame2.jpg", &width, &height, &channels, 3);
+    unsigned char *img1 = stbi_load(argv[1], &width, &height, &channels, 3);
+    unsigned char *img2 = stbi_load(argv[2], &width, &height, &channels, 3);
 
     // Kiểm tra lỗi đọc ảnh
     if (!img1 || !img2) {

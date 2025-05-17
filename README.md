@@ -5,7 +5,7 @@ change G++ path in Makefile
 C:\msys64\usr\bin\make.exe # change to your path
 
 # run
-.\build\run.exe
+.\build\run.exe frame1.jpg frame2.jpg
 
 ```
 
