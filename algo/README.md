@@ -1,6 +1,8 @@
 change G++ path in Makefile
 
 ```shell
+cd .\algo\optical-flow\
+
 # build
 C:\msys64\usr\bin\make.exe # change to your path
 
@@ -8,7 +10,12 @@ C:\msys64\usr\bin\make.exe # change to your path
 .\build\run.exe frame1.jpg frame2.jpg
 
 ```
+# Mô phỏng EFR32MG24 trên Renode
 
+```shell
+
+
+```
 
 
 # GPT: Giải thích thuật toán [Lucas-Kanade](https://gist.github.com/TheVaffel/991ed8f43d8e526ea70935f05ebf1c04) 
