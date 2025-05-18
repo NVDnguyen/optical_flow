@@ -2,3 +2,8 @@
 2. Download [Gecko SDK](https://github.com/SiliconLabs/gecko_sdk.git)
 3. Add Gecko SDK to Simplicity Studio
 4. Download [ReNode](https://github.com/renode/renode/releases/download/v1.15.3/renode_1.15.3.msi) to emulate EFR32MG24
+
+
+## UART
+- TRansmit: **frame1.bin, size_frame1, frame2.bin, size_frame2** to xG24 
+- Receive: direction from xG24
