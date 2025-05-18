@@ -10,7 +10,7 @@ referenced in this SBOM.)
 -->
 <bom xmlns="http://cyclonedx.org/schema/bom/1.6" version="1">
   <metadata>
-    <timestamp>2025-05-17T18:14:58.888701700Z</timestamp>
+    <timestamp>2025-05-18T00:42:47.296648500Z</timestamp>
     <authors>
       <author>
         <name>Silicon Laboratories, Inc.</name>
@@ -483,6 +483,16 @@ referenced in this SBOM.)
 	      </supplier>
           <licenses>
             <expression>Zlib</expression>
+          </licenses>
+        </component>
+        <component bom-ref="simplicity_sdk:2024.12.2:bootloader_delay_driver_nonsecure" type="library">
+          <name>Bootloader Delay Driver (Non-Secure)</name>
+          <version>2024.12.2</version>
+	      <supplier>
+	        <name>Silicon Laboratories, Inc.</name>
+	      </supplier>
+          <licenses>
+            <expression>MSLA</expression>
           </licenses>
         </component>
       </components>

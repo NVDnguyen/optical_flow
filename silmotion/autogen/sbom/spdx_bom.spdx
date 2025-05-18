@@ -13,7 +13,7 @@ DocumentNamespace: https://silabs.com
 
 ## Creation Information
 Creator: Organization: Silicon Laboratories, Inc.
-Created: 2025-05-17T18:14:58.888701700Z
+Created: 2025-05-18T00:42:47.296648500Z
 ## Relationships
 Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-simplicity_sdk-2024.12.2
 
@@ -69,6 +69,7 @@ Relationship: SPDXRef-simplicity_sdk-2024.12.2 CONTAINS SPDXRef-simplicity_sdk-2
 Relationship: SPDXRef-simplicity_sdk-2024.12.2 CONTAINS SPDXRef-simplicity_sdk-2024.12.2-sl_common
 Relationship: SPDXRef-simplicity_sdk-2024.12.2 CONTAINS SPDXRef-simplicity_sdk-2024.12.2-status
 Relationship: SPDXRef-simplicity_sdk-2024.12.2 CONTAINS SPDXRef-simplicity_sdk-2024.12.2-gpio
+Relationship: SPDXRef-simplicity_sdk-2024.12.2 CONTAINS SPDXRef-simplicity_sdk-2024.12.2-bootloader_delay_driver_nonsecure
 
 ## Package Information
 PackageName: EFR32MG24B310F1536IM48
@@ -568,3 +569,14 @@ PackageSupplier: Organization: Silicon Laboratories, Inc.
 PackageLicenseConcluded: Zlib
 ## Relationships
 Relationship: SPDXRef-simplicity_sdk-2024.12.2-gpio CONTAINED_BY SPDXRef-simplicity_sdk-2024.12.2
+
+## Package Information
+PackageName: Bootloader Delay Driver (Non-Secure)
+SPDXID: SPDXRef-simplicity_sdk-2024.12.2-bootloader_delay_driver_nonsecure
+PackageVersion: 2024.12.2
+PrimaryPackagePurpose: LIBRARY
+PackageDownloadLocation: NOASSERTION
+PackageSupplier: Organization: Silicon Laboratories, Inc.
+PackageLicenseConcluded: MSLA
+## Relationships
+Relationship: SPDXRef-simplicity_sdk-2024.12.2-bootloader_delay_driver_nonsecure CONTAINED_BY SPDXRef-simplicity_sdk-2024.12.2

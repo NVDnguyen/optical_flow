@@ -51,6 +51,16 @@
 			<locationURI>STUDIO_SDK_LOC/hardware/board/src/sl_board_init.c</locationURI>
 		</link>
 		<link>
+			<name>simplicity_sdk_2024.12.2/platform/bootloader/driver/btl_driver_delay.h</name>
+			<type>1</type>
+			<locationURI>STUDIO_SDK_LOC/platform/bootloader/driver/btl_driver_delay.h</locationURI>
+		</link>
+		<link>
+			<name>simplicity_sdk_2024.12.2/platform/bootloader/driver/btl_driver_delay_ns.c</name>
+			<type>1</type>
+			<locationURI>STUDIO_SDK_LOC/platform/bootloader/driver/btl_driver_delay_ns.c</locationURI>
+		</link>
+		<link>
 			<name>simplicity_sdk_2024.12.2/platform/common/inc/sl_assert.h</name>
 			<type>1</type>
 			<locationURI>STUDIO_SDK_LOC/platform/common/inc/sl_assert.h</locationURI>

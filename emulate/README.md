@@ -18,7 +18,7 @@ mach create
 machine LoadPlatformDescription @platforms/boards/silabs/efr32mg24board.repl
 
 # Load compiled ELF file 
-sysbus LoadELF @path_to_your_file/your_efr32_project.elf
+sysbus LoadELF @path_to_your_file/Nova/silmotion/GNU ARM v12.2.1 - Debug/silmotion.axf
 
 # Configure UART for input and output logs
 uart0 CreateBridge uart_bridge

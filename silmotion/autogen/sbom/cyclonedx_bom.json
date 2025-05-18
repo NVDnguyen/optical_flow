@@ -3,7 +3,7 @@
   "specVersion" : "1.6",
   "version" : 1,
   "metadata" : {
-    "timestamp" : "2025-05-17T18:14:58.888701700Z",
+    "timestamp" : "2025-05-18T00:42:47.296648500Z",
     "authors" : [ {
       "name" : "Silicon Laboratories, Inc."
     } ],
@@ -568,6 +568,18 @@
       },
       "licenses" : [ {
         "expression" : "Zlib"
+      } ]
+    }, {
+      "scope" : "required",
+      "type" : "library",
+      "bom-ref" : "simplicity_sdk:2024.12.2:bootloader_delay_driver_nonsecure",
+      "name" : "Bootloader Delay Driver (Non-Secure)",
+      "version" : "2024.12.2",
+      "supplier" : {
+        "name" : "Silicon Laboratories, Inc."
+      },
+      "licenses" : [ {
+        "expression" : "MSLA"
       } ]
     } ]
   } ]

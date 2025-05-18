@@ -5,6 +5,10 @@ led0: Miscellaneous.LED @ gpioPortB 0
 deviceInformation:
     deviceNumber: 332
 
-usart0:
+usart1:
     ReceiveIRQ -> nvic@12
     TransmitIRQ -> nvic@13
+    RXD -> gpioPortC 2 
+    TXD -> gpioPortC 1 
+
+vcomEnable: GPIOPin @ gpioPortB 0

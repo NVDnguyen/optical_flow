@@ -14,12 +14,27 @@
  * sections of the MSLA applicable to Source Code.
  *
  ******************************************************************************/
+#include <stdio.h>
+#include "em_device.h"
+#include "em_chip.h"
+#include "em_cmu.h"
+#include "em_emu.h"
+#include "em_eusart.h"
+#include "em_gpio.h"
+#include "nv_eusart.h"
+/***************************************************************************//**
+ * Static Function.
+ ******************************************************************************/
+
 
 /***************************************************************************//**
  * Initialize application.
  ******************************************************************************/
 void app_init(void)
 {
+  eusart_init();
+
+
 }
 
 /***************************************************************************//**
@@ -28,3 +43,4 @@ void app_init(void)
 void app_process_action(void)
 {
 }
+

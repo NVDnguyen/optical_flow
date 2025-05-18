@@ -61,6 +61,12 @@
           </folder>
         </folder>
       </folder>
+      <folder name="bootloader">
+        <folder name="driver">
+          <file name="btl_driver_delay_ns.c" uri="studio:/sdk/platform/bootloader/driver/btl_driver_delay_ns.c"/>
+          <file name="btl_driver_delay.h" uri="studio:/sdk/platform/bootloader/driver/btl_driver_delay.h"/>
+        </folder>
+      </folder>
       <folder name="service">
         <folder name="clock_manager">
           <folder name="src">
@@ -256,13 +262,14 @@
       </folder>
     </folder>
   </folder>
-  <file name="app.c" linked="false" uri="studio:/sdk/app/common/example/empty/app.c"/>
-  <file name="main.c" linked="false" uri="studio:/sdk/app/common/example/empty/main.c"/>
-  <file name="app.h" linked="false" uri="studio:/sdk/app/common/example/empty/app.h"/>
-  <file name="readme.md" linked="false" uri="studio:/sdk/app/common/example/empty/readme.md"/>
+  <file name="app.c" linked="false" uri="studio:/project/app.c"/>
+  <file name="main.c" linked="false" uri="studio:/project/main.c"/>
+  <file name="app.h" linked="false" uri="studio:/project/app.h"/>
+  <file name="readme.md" linked="false" uri="studio:/project/readme.md"/>
   <includePath uri="studio:/project/"/>
   <includePath uri="studio:/sdk/platform/Device/SiliconLabs/EFR32MG24/Include"/>
   <includePath uri="studio:/sdk/hardware/board/inc"/>
+  <includePath uri="studio:/sdk/platform/bootloader"/>
   <includePath uri="studio:/sdk/platform/service/clock_manager/inc"/>
   <includePath uri="studio:/sdk/platform/service/clock_manager/src"/>
   <includePath uri="studio:/sdk/platform/CMSIS/Core/Include"/>

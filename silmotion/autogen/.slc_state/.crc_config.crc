@@ -1,4 +1,5 @@
 #CRC Codes for initially generated config files -- do not modify!
+btl_euart_driver_cfg.h=420853744
 emlib_core_debug_config.h=-212744839
 sl_board_control_config.h=857884980
 sl_clock_manager_oscillator_config.h=-168501121

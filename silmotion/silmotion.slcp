@@ -27,6 +27,7 @@ sdk: {id: simplicity_sdk, version: 2024.12.2}
 toolchain_settings: []
 component:
 - {id: EFR32MG24B310F1536IM48}
+- {id: bootloader_delay_driver_nonsecure}
 - {id: brd2601b}
 - {id: clock_manager}
 - {id: device_init}
