@@ -1,35 +1,37 @@
 #include "sl_event_handler.h"
 
 #include "em_chip.h"
-#include "sl_interrupt_manager.h"
+#include "sl_device_init_nvic.h"
 #include "sl_board_init.h"
-#include "sl_clock_manager_init.h"
 #include "sl_device_init_dcdc.h"
-#include "sl_clock_manager.h"
+#include "sl_device_init_lfxo.h"
+#include "sl_device_init_hfxo.h"
+#include "sl_device_init_clocks.h"
 #include "sl_device_init_emu.h"
 #include "sl_board_control.h"
-#include "sl_gpio.h"
+#include "sl_sleeptimer.h"
 
 void sl_platform_init(void)
 {
   CHIP_Init();
-  sl_interrupt_manager_init();
+  sl_device_init_nvic();
   sl_board_preinit();
-  sl_clock_manager_init();
   sl_device_init_dcdc();
-  sl_clock_manager_runtime_init();
+  sl_device_init_lfxo();
+  sl_device_init_hfxo();
+  sl_device_init_clocks();
   sl_device_init_emu();
   sl_board_init();
 }
 
 void sl_driver_init(void)
 {
-  sl_gpio_init();
 }
 
 void sl_service_init(void)
 {
   sl_board_configure_vcom();
+  sl_sleeptimer_init();
 }
 
 void sl_stack_init(void)

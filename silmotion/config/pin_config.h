@@ -5,6 +5,22 @@
 // [CMU]$
 
 // $[LFXO]
+// LFXO LFXTAL_I on PD01
+#ifndef LFXO_LFXTAL_I_PORT                      
+#define LFXO_LFXTAL_I_PORT                       gpioPortD
+#endif
+#ifndef LFXO_LFXTAL_I_PIN                       
+#define LFXO_LFXTAL_I_PIN                        1
+#endif
+
+// LFXO LFXTAL_O on PD00
+#ifndef LFXO_LFXTAL_O_PORT                      
+#define LFXO_LFXTAL_O_PORT                       gpioPortD
+#endif
+#ifndef LFXO_LFXTAL_O_PIN                       
+#define LFXO_LFXTAL_O_PIN                        0
+#endif
+
 // [LFXO]$
 
 // $[PRS.ASYNCH0]
@@ -92,6 +108,22 @@
 // [I2C1]$
 
 // $[EUSART1]
+// EUSART1 RX on PC02
+#ifndef EUSART1_RX_PORT                         
+#define EUSART1_RX_PORT                          gpioPortC
+#endif
+#ifndef EUSART1_RX_PIN                          
+#define EUSART1_RX_PIN                           2
+#endif
+
+// EUSART1 TX on PC01
+#ifndef EUSART1_TX_PORT                         
+#define EUSART1_TX_PORT                          gpioPortC
+#endif
+#ifndef EUSART1_TX_PIN                          
+#define EUSART1_TX_PIN                           1
+#endif
+
 // [EUSART1]$
 
 // $[KEYSCAN]
@@ -135,10 +167,17 @@
 
 // $[CUSTOM_PIN_NAME]
 #ifndef _PORT                                   
-#define _PORT                                    SL_GPIO_PORT_A
+#define _PORT                                    gpioPortA
 #endif
 #ifndef _PIN                                    
 #define _PIN                                     0
+#endif
+
+#ifndef LED_PORT                                
+#define LED_PORT                                 gpioPortB
+#endif
+#ifndef LED_PIN                                 
+#define LED_PIN                                  0
 #endif
 
 // [CUSTOM_PIN_NAME]$

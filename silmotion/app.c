@@ -22,6 +22,8 @@
 #include "em_eusart.h"
 #include "em_gpio.h"
 #include "nv_eusart.h"
+#include "sl_sleeptimer.h"
+
 /***************************************************************************//**
  * Static Function.
  ******************************************************************************/
@@ -33,8 +35,6 @@
 void app_init(void)
 {
   eusart_init();
-
-
 }
 
 /***************************************************************************//**
@@ -42,5 +42,10 @@ void app_init(void)
  ******************************************************************************/
 void app_process_action(void)
 {
+  char* msg = "hello";
+  for(int i=0; msg[i]!='\0';i++){
+      eusart_send(msg[i]);
+  }
+  sl_sleeptimer_delay_millisecond(1000);//1s
 }
 
