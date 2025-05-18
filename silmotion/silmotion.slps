@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="ASCII"?>
+<model:MDescriptors xmlns:model="http://www.silabs.com/ss/Studio.ecore">
+  <descriptors name="">
+    <properties key="projectCommon.sdkId" value="com.silabs.sdk.stack.super:4.4.6._1428348270"/>
+    <properties key="universalConfig.relativeWorkspacePath" value="..\silmotion.slcw"/>
+    <properties key="universalConfig.generationDirectory" value="silmotion.slcp"/>
+    <properties key="universalConfig.toolchainCompatibility" value="iar gcc"/>
+    <properties key="universalConfig.compSelProjInstanceId" value="1747557598605"/>
+  </descriptors>
+</model:MDescriptors>

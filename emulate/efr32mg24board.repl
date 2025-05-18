@@ -1,5 +1,5 @@
 using "platforms/cpus/silabs/efr32/efr32mg24.repl"
 
-usart1:
-    ReceiveIRQ -> nvic@26
-    TransmitIRQ -> nvic@27
+usart2:
+    ReceiveIRQ -> nvic@40
+    TransmitIRQ -> nvic@41
