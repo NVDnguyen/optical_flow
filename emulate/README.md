@@ -26,7 +26,7 @@ machine LoadPlatformDescription @platforms/boards/silabs/efr32mg24board.repl
 connector Connect sysbus.usart2 terminal
 
 # Load compiled ELF file 
-sysbus LoadELF 'C:\Users\nvd\SimplicityStudio\v5_workspace\silmotion_xG12\GNU ARM v12.2.1 - Debug\silmotion_xG12.axf'
+sysbus LoadELF 'path/silmotion_xG12.axf'
 
 showAnalyzer sysbus.usart2
 
@@ -34,7 +34,7 @@ start
 
 ```
 
-Send file via socket in another termial in windows
+***Send file via socket in another termial in windows***
 - download nmap, C:\Program Files (x86)\Nmap\ncat.exe
 ```shell
 cat E:\AIoT\Project\Nova\assets\frame1.bin | ncat localhost 12345

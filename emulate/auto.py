@@ -32,14 +32,12 @@ def run_renode(axf_path):
 
 
 if __name__ == "__main__":
-    source_axf = r"E:\\AIoT\\Project\\Nova\\silmotion_xG12\\GNU ARM v12.2.1 - Debug\\silmotion_xG12.axf"
+    source_axf = r"..\\silmotion_xG12\\GNU ARM v12.2.1 - Debug\\silmotion_xG12.axf"
     dest_folder = os.getcwd()
 
     try:
         # Copy AXF file
         axf_path = copy_axf_file(source_axf, dest_folder)
-
-        # Run Renode directly
         run_renode(axf_path)
 
     except Exception as e:
