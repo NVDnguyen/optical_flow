@@ -1,7 +1,7 @@
 1. Download Renode [Windows](https://github.com/renode/renode/releases/download/v1.15.3/renode_1.15.3.msi)
-renode --version
-```shell
 
+```shell
+renode --version
 ```
 
 2. Move ```efr32mg24.repl``` to ```D:\Renode\platforms\cpus\silabs\efr32```
@@ -13,20 +13,20 @@ renode --version
 
 renode --console
 
+# show all available command
+help 
+
 # create socket to send file via usart
 emulation CreateServerSocketTerminal 12345 "terminal" false
-connector Connect sysbus.usart2 terminal
 
 # create machine
 mach create
 
 machine LoadPlatformDescription @platforms/boards/silabs/efr32mg24board.repl
+connector Connect sysbus.usart2 terminal
 
 # Load compiled ELF file 
-sysbus LoadELF 'E:\AIoT\Project\Nova\emulate\silmotion_xG12.axf'
-
-# enable log
-logLevel -1 sysbus.uart0
+sysbus LoadELF 'C:\Users\nvd\SimplicityStudio\v5_workspace\silmotion_xG12\GNU ARM v12.2.1 - Debug\silmotion_xG12.axf'
 
 showAnalyzer sysbus.usart2
 
@@ -35,23 +35,13 @@ start
 ```
 
 Send file via socket in another termial in windows
+- download nmap, C:\Program Files (x86)\Nmap\ncat.exe
 ```shell
-cat frame1.bin | nc localhost 12345
+cat E:\AIoT\Project\Nova\assets\frame1.bin | ncat localhost 12345
+echo "Test data" | ncat localhost 12345
 ```
 
-5. Debugging and Logs
 
-* Enable logging to monitor specific events, such as GPIO or UART activity:
-
-  ```shell
-  logLevel -1 sysbus.uart0
-  ```
-
-* To inspect GPIOs or peripherals:
-
-  ```shell
-  logLevel -1 gpioPortD.UserLED
-  ```
 
 ---
 
