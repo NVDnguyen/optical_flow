@@ -1,14 +1,5 @@
 using "platforms/cpus/silabs/efr32/efr32mg24.repl"
 
-led0: Miscellaneous.LED @ gpioPortB 0
-
-deviceInformation:
-    deviceNumber: 332
-
 usart1:
-    ReceiveIRQ -> nvic@12
-    TransmitIRQ -> nvic@13
-    RXD -> gpioPortC 2 
-    TXD -> gpioPortC 1 
-
-vcomEnable: GPIOPin @ gpioPortB 0
+    ReceiveIRQ -> nvic@26
+    TransmitIRQ -> nvic@27

@@ -1,43 +1,8 @@
 using "./efr32mg12.repl"
-rtcc:
-    -> nvic@31
-    frequency: 32768
-
-i2c0:
-    -> nvic@17
-i2c1:
-    -> nvic@40
-
-usart0:
-    ReceiveIRQ -> nvic@12
-    TransmitIRQ -> nvic@13
-usart1:
-    ReceiveIRQ -> nvic@20
-    TransmitIRQ -> nvic@21
-usart2:
-    ReceiveIRQ -> nvic@38
-    TransmitIRQ -> nvic@39
-
-timer0:
-    -> nvic@11
-timer1:
-    -> nvic@19
-timer2:
-    -> nvic@22
-
-wtimer0:
-    frequency: 0x1000000
-    width: TimerWidth.Bit32
-    -> nvic@37
-
-wtimer1:
-    frequency: 0x1000000
-    width: TimerWidth.Bit32
-    -> nvic@38
 
 sram:
     size: 0x00040000
 flash:
     size: 0x00180000
-deviceInformation:
-    deviceFamily: DeviceFamily.EFR32MG24P
+
+

@@ -1,7 +1,7 @@
 1. Download Renode [Windows](https://github.com/renode/renode/releases/download/v1.15.3/renode_1.15.3.msi)
-
+renode --version
 ```shell
-renote --version
+
 ```
 
 2. Move ```efr32mg24.repl``` to ```D:\Renode\platforms\cpus\silabs\efr32```
@@ -18,7 +18,7 @@ mach create
 machine LoadPlatformDescription @platforms/boards/silabs/efr32mg24board.repl
 
 # Load compiled ELF file 
-sysbus LoadELF @path_to_your_file/Nova/silmotion/GNU ARM v12.2.1 - Debug/silmotion.axf
+sysbus LoadELF 'E:\AIoT\Project\Nova\emulate\silmotion_xG12.axf'
 
 # Configure UART for input and output logs
 uart0 CreateBridge uart_bridge

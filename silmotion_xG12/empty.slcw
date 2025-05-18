@@ -1,0 +1,6 @@
+---
+label: "empty"
+project:
+- id: "main"
+  path: "silmotion_xG12.slcp"
+  output: "."
