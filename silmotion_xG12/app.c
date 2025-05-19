@@ -23,11 +23,6 @@ extern const unsigned int frame1_jpg_len;
 extern const unsigned char frame2_jpg[];
 extern const unsigned int frame2_jpg_len;
 
-#define WIDTH 160
-#define HEIGHT 90
-#define PYR_LEVELS 2
-#define WINDOW_SIZE 5
-#define NUM_ITER 5
 #define MAX_BUFFER_SIZE (WIDTH * HEIGHT)
 #define PYR_SIZE (MAX_BUFFER_SIZE + (MAX_BUFFER_SIZE >> 2))
 
@@ -38,6 +33,9 @@ typedef enum {
   LOAD_FAIL
 } status_t;
 
+/********************************************************************************//**
+ * Static Functions
+ ***********************************************************************************/
 static unsigned char pyr_buffer[PYR_SIZE];
 static int16_t grad_buffer[MAX_BUFFER_SIZE];
 static unsigned char gray_buffer[MAX_BUFFER_SIZE];
@@ -55,7 +53,9 @@ static void rx_callback(uint8_t data) {
 static void cleanup_image_resources(unsigned char *img) {
   if (img) stbi_image_free(img);
 }
-
+/********************************************************************************//**
+ * Initialize application.
+ ***********************************************************************************/
 void app_init(void) {
   usart_init();
   usart_set_rx_callback(rx_callback);
@@ -161,6 +161,8 @@ void app_init(void) {
       send_string(debug);
   }
 }
-
+/********************************************************************************//**
+ * App ticking function.
+ ***********************************************************************************/
 void app_process_action(void) {
 }
