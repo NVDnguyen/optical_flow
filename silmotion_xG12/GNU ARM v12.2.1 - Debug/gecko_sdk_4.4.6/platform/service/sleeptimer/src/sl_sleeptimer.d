@@ -62,9 +62,9 @@ gecko_sdk_4.4.6/platform/service/sleeptimer/src/sl_sleeptimer.o: \
  c:\gecko_sdk\platform\common\inc\sl_assert.h \
  C:/gecko_sdk/platform/service/sleeptimer/src/sli_sleeptimer_hal.h \
  c:\gecko_sdk\platform\service\sleeptimer\inc\sli_sleeptimer.h \
- C:\Users\nvd\SimplicityStudio\v5_workspace\silmotion_xG12\config/sl_sleeptimer_config.h \
+ E:\AIoT\Project\Nova\silmotion_xG12\config/sl_sleeptimer_config.h \
  c:\gecko_sdk\platform\common\inc\sl_atomic.h \
- C:\Users\nvd\SimplicityStudio\v5_workspace\silmotion_xG12\autogen/sl_component_catalog.h
+ E:\AIoT\Project\Nova\silmotion_xG12\autogen/sl_component_catalog.h
 c:\gecko_sdk\platform\common\toolchain\inc\sl_gcc_preinclude.h:
 c:\gecko_sdk\platform\device\siliconlabs\efr32mg12p\include\em_device.h:
 c:\gecko_sdk\platform\device\siliconlabs\efr32mg12p\include\efr32mg12p432f1024gl125.h:
@@ -127,6 +127,6 @@ c:\gecko_sdk\platform\common\inc\sl_common.h:
 c:\gecko_sdk\platform\common\inc\sl_assert.h:
 C:/gecko_sdk/platform/service/sleeptimer/src/sli_sleeptimer_hal.h:
 c:\gecko_sdk\platform\service\sleeptimer\inc\sli_sleeptimer.h:
-C:\Users\nvd\SimplicityStudio\v5_workspace\silmotion_xG12\config/sl_sleeptimer_config.h:
+E:\AIoT\Project\Nova\silmotion_xG12\config/sl_sleeptimer_config.h:
 c:\gecko_sdk\platform\common\inc\sl_atomic.h:
-C:\Users\nvd\SimplicityStudio\v5_workspace\silmotion_xG12\autogen/sl_component_catalog.h:
+E:\AIoT\Project\Nova\silmotion_xG12\autogen/sl_component_catalog.h:

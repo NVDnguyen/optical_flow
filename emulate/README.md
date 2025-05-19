@@ -23,17 +23,26 @@ emulation CreateServerSocketTerminal 12345 "terminal" false
 mach create
 
 machine LoadPlatformDescription @platforms/boards/silabs/efr32mg24board.repl
+# if created socket
 connector Connect sysbus.usart2 terminal
 
 # Load compiled ELF file 
-sysbus LoadELF 'path/silmotion_xG12.axf'
+sysbus LoadELF 'E:\AIoT\Project\Nova\emulate\silmotion_xG12.axf'
 
 showAnalyzer sysbus.usart2
+# if want to use GDB to debug
+machine StartGdbServer 1234
 
 start
 
 ```
+*** GDB debug ***
+```shell
+arm-none-eabi-gdb  E:\AIoT\Project\Nova\emulate\silmotion_xG12.axf
+x /10x  0xd7f0 # first 10 word = 40 bytes in frame 1
+x /1024xw 0x20000000 # 4KB RAM
 
+```
 ***Send file via socket in another termial in windows***
 - download nmap, C:\Program Files (x86)\Nmap\ncat.exe
 ```shell
@@ -176,7 +185,7 @@ sysbus:
         Tag <0x0fe00000, 0x0fe007ff> "User_Data"
 
 ```
-
+---
 efr32mg1
 ```yaml
 i2c0: I2C.EFR32_I2CController @ sysbus <0x4000c000, +0x400>

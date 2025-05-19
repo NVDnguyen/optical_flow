@@ -64,14 +64,14 @@ gecko_sdk_4.4.6/platform/driver/debug/src/sl_debug_swo.o: \
  c:\gecko_sdk\platform\emlib\inc\em_core_generic.h \
  c:\gecko_sdk\platform\common\inc\sl_common.h \
  c:\gecko_sdk\platform\common\inc\sl_assert.h \
- C:\Users\nvd\SimplicityStudio\v5_workspace\silmotion_xG12\autogen/sl_component_catalog.h \
- C:\Users\nvd\SimplicityStudio\v5_workspace\silmotion_xG12\config/emlib_core_debug_config.h \
+ E:\AIoT\Project\Nova\silmotion_xG12\autogen/sl_component_catalog.h \
+ E:\AIoT\Project\Nova\silmotion_xG12\config/emlib_core_debug_config.h \
  c:\gecko_sdk\platform\common\inc\sl_enum.h \
  c:\gecko_sdk\platform\emlib\inc\em_cmu.h \
  c:\gecko_sdk\platform\emlib\inc\em_cmu_compat.h \
  c:\gecko_sdk\platform\emlib\inc\em_gpio.h \
  c:\gecko_sdk\platform\emlib\inc\sli_em_cmu.h \
- C:\Users\nvd\SimplicityStudio\v5_workspace\silmotion_xG12\config/sl_debug_swo_config.h
+ E:\AIoT\Project\Nova\silmotion_xG12\config/sl_debug_swo_config.h
 c:\gecko_sdk\platform\common\toolchain\inc\sl_gcc_preinclude.h:
 c:\gecko_sdk\platform\driver\debug\inc\sl_debug_swo.h:
 c:\gecko_sdk\platform\common\inc\sl_status.h:
@@ -136,11 +136,11 @@ c:\gecko_sdk\platform\emlib\inc\em_core.h:
 c:\gecko_sdk\platform\emlib\inc\em_core_generic.h:
 c:\gecko_sdk\platform\common\inc\sl_common.h:
 c:\gecko_sdk\platform\common\inc\sl_assert.h:
-C:\Users\nvd\SimplicityStudio\v5_workspace\silmotion_xG12\autogen/sl_component_catalog.h:
-C:\Users\nvd\SimplicityStudio\v5_workspace\silmotion_xG12\config/emlib_core_debug_config.h:
+E:\AIoT\Project\Nova\silmotion_xG12\autogen/sl_component_catalog.h:
+E:\AIoT\Project\Nova\silmotion_xG12\config/emlib_core_debug_config.h:
 c:\gecko_sdk\platform\common\inc\sl_enum.h:
 c:\gecko_sdk\platform\emlib\inc\em_cmu.h:
 c:\gecko_sdk\platform\emlib\inc\em_cmu_compat.h:
 c:\gecko_sdk\platform\emlib\inc\em_gpio.h:
 c:\gecko_sdk\platform\emlib\inc\sli_em_cmu.h:
-C:\Users\nvd\SimplicityStudio\v5_workspace\silmotion_xG12\config/sl_debug_swo_config.h:
+E:\AIoT\Project\Nova\silmotion_xG12\config/sl_debug_swo_config.h:

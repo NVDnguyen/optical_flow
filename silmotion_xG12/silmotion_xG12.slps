@@ -2,7 +2,7 @@
 <model:MDescriptors xmlns:model="http://www.silabs.com/ss/Studio.ecore">
   <descriptors name="silmotion_xG12">
     <properties key="projectCommon.sdkId" value="com.silabs.sdk.stack.super:4.4.6._1428348270"/>
-    <properties key="universalConfig.relativeWorkspacePath" value="..\empty.slcw"/>
+    <properties key="universalConfig.relativeWorkspacePath" value="..\silmotion_xG12.slcw"/>
     <properties key="universalConfig.generationDirectory" value=""/>
     <properties key="universalConfig.toolchainCompatibility" value="iar gcc"/>
     <properties key="projectCommon.overwriteCopiedSources" value="false"/>
@@ -12,6 +12,6 @@
     <properties key="projectCommon.toolchainId" value="com.silabs.ss.tool.ide.arm.toolchain.gnu.cdt:12.2.1.20221205"/>
     <properties key="universalConfig.projectTypeIds" value="com.silabs.ss.framework.ide.project.core.cdtMbsProjectType"/>
     <properties key="projectCommon.importModeId" value="LINK_LIBRARIES"/>
-    <properties key="universalConfig.compSelProjInstanceId" value="1747545136992"/>
+    <properties key="universalConfig.compSelProjInstanceId" value="1747575689834"/>
   </descriptors>
 </model:MDescriptors>

@@ -1,5 +1,5 @@
 /*
- * nv_usart.h
+ * usart.h
  *
  *  Created on: May 18, 2025
  *      Author: nvd

@@ -63,11 +63,11 @@ gecko_sdk_4.4.6/platform/service/sleeptimer/src/sl_sleeptimer_hal_rtcc.o: \
  c:\gecko_sdk\platform\common\inc\sl_assert.h \
  C:/gecko_sdk/platform/service/sleeptimer/src/sli_sleeptimer_hal.h \
  c:\gecko_sdk\platform\service\sleeptimer\inc\sli_sleeptimer.h \
- C:\Users\nvd\SimplicityStudio\v5_workspace\silmotion_xG12\config/sl_sleeptimer_config.h \
+ E:\AIoT\Project\Nova\silmotion_xG12\config/sl_sleeptimer_config.h \
  c:\gecko_sdk\platform\emlib\inc\em_core.h \
  c:\gecko_sdk\platform\emlib\inc\em_core_generic.h \
- C:\Users\nvd\SimplicityStudio\v5_workspace\silmotion_xG12\autogen/sl_component_catalog.h \
- C:\Users\nvd\SimplicityStudio\v5_workspace\silmotion_xG12\config/emlib_core_debug_config.h \
+ E:\AIoT\Project\Nova\silmotion_xG12\autogen/sl_component_catalog.h \
+ E:\AIoT\Project\Nova\silmotion_xG12\config/emlib_core_debug_config.h \
  c:\gecko_sdk\platform\emlib\inc\em_cmu.h \
  c:\gecko_sdk\platform\emlib\inc\em_bus.h \
  c:\gecko_sdk\platform\emlib\inc\em_core.h \
@@ -138,11 +138,11 @@ c:\gecko_sdk\platform\common\inc\sl_common.h:
 c:\gecko_sdk\platform\common\inc\sl_assert.h:
 C:/gecko_sdk/platform/service/sleeptimer/src/sli_sleeptimer_hal.h:
 c:\gecko_sdk\platform\service\sleeptimer\inc\sli_sleeptimer.h:
-C:\Users\nvd\SimplicityStudio\v5_workspace\silmotion_xG12\config/sl_sleeptimer_config.h:
+E:\AIoT\Project\Nova\silmotion_xG12\config/sl_sleeptimer_config.h:
 c:\gecko_sdk\platform\emlib\inc\em_core.h:
 c:\gecko_sdk\platform\emlib\inc\em_core_generic.h:
-C:\Users\nvd\SimplicityStudio\v5_workspace\silmotion_xG12\autogen/sl_component_catalog.h:
-C:\Users\nvd\SimplicityStudio\v5_workspace\silmotion_xG12\config/emlib_core_debug_config.h:
+E:\AIoT\Project\Nova\silmotion_xG12\autogen/sl_component_catalog.h:
+E:\AIoT\Project\Nova\silmotion_xG12\config/emlib_core_debug_config.h:
 c:\gecko_sdk\platform\emlib\inc\em_cmu.h:
 c:\gecko_sdk\platform\emlib\inc\em_bus.h:
 c:\gecko_sdk\platform\emlib\inc\em_core.h:

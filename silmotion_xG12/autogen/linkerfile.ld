@@ -24,12 +24,13 @@
  * 2. Altered source versions must be plainly marked as such, and must not be
  *    misrepresented as being the original software.
  * 3. This notice may not be removed or altered from any source distribution.
- *
+ * Flash up to 1.5M
+ * Ram up to 512K
  ******************************************************************************/
  MEMORY
  {
-   FLASH      (rx)  : ORIGIN = 0x0, LENGTH = 0x100000
-   RAM        (rwx) : ORIGIN = 0x20000000, LENGTH = 0x40000
+   FLASH      (rx)  : ORIGIN = 0x0, LENGTH = 0x180000 
+   RAM        (rwx) : ORIGIN = 0x20000000, LENGTH = 0x7D000 
  }
 
 ENTRY(Reset_Handler)
@@ -220,8 +221,8 @@ SECTIONS
   } > RAM
 
   __heap_size = __HeapLimit - __HeapBase;
-  __ram_end__ = 0x20000000 + 0x40000;
-  __main_flash_end__ = 0x0 + 0x100000;
+  __ram_end__ = 0x20000000 + 0x7D000;
+  __main_flash_end__ = 0x0 + 0x180000;
 
    /* This is where we handle flash storage blocks. We use dummy sections for finding the configured
    * block sizes and then "place" them at the end of flash when the size is known. */

@@ -121,6 +121,28 @@
 // [USART1]$
 
 // $[USART2]
+// USART2 RX on PA7
+#ifndef USART2_RX_PORT                          
+#define USART2_RX_PORT                           gpioPortA
+#endif
+#ifndef USART2_RX_PIN                           
+#define USART2_RX_PIN                            7
+#endif
+#ifndef USART2_RX_LOC                           
+#define USART2_RX_LOC                            1
+#endif
+
+// USART2 TX on PA6
+#ifndef USART2_TX_PORT                          
+#define USART2_TX_PORT                           gpioPortA
+#endif
+#ifndef USART2_TX_PIN                           
+#define USART2_TX_PIN                            6
+#endif
+#ifndef USART2_TX_LOC                           
+#define USART2_TX_LOC                            1
+#endif
+
 // [USART2]$
 
 // $[USART3]

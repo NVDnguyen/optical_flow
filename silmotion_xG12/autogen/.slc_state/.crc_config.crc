@@ -1,4 +1,5 @@
 #CRC Codes for initially generated config files -- do not modify!
+buffer_pool_allocator_config.h=-542306717
 emlib_core_debug_config.h=-212744839
 sl_board_control_config.h=853603902
 sl_debug_swo_config.h=734494033

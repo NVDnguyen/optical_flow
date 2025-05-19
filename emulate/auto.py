@@ -20,6 +20,7 @@ def run_renode(axf_path):
         "connector Connect sysbus.usart2 terminal",
         f"sysbus LoadELF '{axf_path}'",
         "showAnalyzer sysbus.usart2",
+        "machine StartGdbServer 1234",
         "start"
     ]
 

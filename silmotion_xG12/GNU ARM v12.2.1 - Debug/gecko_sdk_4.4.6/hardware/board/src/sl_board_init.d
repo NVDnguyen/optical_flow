@@ -4,7 +4,7 @@ gecko_sdk_4.4.6/hardware/board/src/sl_board_init.o: \
  c:\gecko_sdk\hardware\board\inc\sl_board_control.h \
  c:\gecko_sdk\platform\common\inc\sl_status.h \
  c:\gecko_sdk\platform\common\inc\sl_enum.h \
- C:\Users\nvd\SimplicityStudio\v5_workspace\silmotion_xG12\config/sl_board_control_config.h \
+ E:\AIoT\Project\Nova\silmotion_xG12\config/sl_board_control_config.h \
  c:\gecko_sdk\platform\emlib\inc\em_cmu.h \
  c:\gecko_sdk\platform\device\siliconlabs\efr32mg12p\include\em_device.h \
  c:\gecko_sdk\platform\device\siliconlabs\efr32mg12p\include\efr32mg12p432f1024gl125.h \
@@ -66,18 +66,18 @@ gecko_sdk_4.4.6/hardware/board/src/sl_board_init.o: \
  c:\gecko_sdk\platform\emlib\inc\em_core_generic.h \
  c:\gecko_sdk\platform\common\inc\sl_common.h \
  c:\gecko_sdk\platform\common\inc\sl_assert.h \
- C:\Users\nvd\SimplicityStudio\v5_workspace\silmotion_xG12\autogen/sl_component_catalog.h \
- C:\Users\nvd\SimplicityStudio\v5_workspace\silmotion_xG12\config/emlib_core_debug_config.h \
+ E:\AIoT\Project\Nova\silmotion_xG12\autogen/sl_component_catalog.h \
+ E:\AIoT\Project\Nova\silmotion_xG12\config/emlib_core_debug_config.h \
  c:\gecko_sdk\platform\emlib\inc\em_cmu_compat.h \
  c:\gecko_sdk\platform\emlib\inc\em_gpio.h \
  c:\gecko_sdk\platform\emlib\inc\sli_em_cmu.h \
  c:\gecko_sdk\hardware\driver\mx25_flash_shutdown\inc\sl_mx25_flash_shutdown_usart\sl_mx25_flash_shutdown.h \
- C:\Users\nvd\SimplicityStudio\v5_workspace\silmotion_xG12\config/sl_mx25_flash_shutdown_usart_config.h
+ E:\AIoT\Project\Nova\silmotion_xG12\config/sl_mx25_flash_shutdown_usart_config.h
 c:\gecko_sdk\platform\common\toolchain\inc\sl_gcc_preinclude.h:
 c:\gecko_sdk\hardware\board\inc\sl_board_control.h:
 c:\gecko_sdk\platform\common\inc\sl_status.h:
 c:\gecko_sdk\platform\common\inc\sl_enum.h:
-C:\Users\nvd\SimplicityStudio\v5_workspace\silmotion_xG12\config/sl_board_control_config.h:
+E:\AIoT\Project\Nova\silmotion_xG12\config/sl_board_control_config.h:
 c:\gecko_sdk\platform\emlib\inc\em_cmu.h:
 c:\gecko_sdk\platform\device\siliconlabs\efr32mg12p\include\em_device.h:
 c:\gecko_sdk\platform\device\siliconlabs\efr32mg12p\include\efr32mg12p432f1024gl125.h:
@@ -139,10 +139,10 @@ c:\gecko_sdk\platform\emlib\inc\em_core.h:
 c:\gecko_sdk\platform\emlib\inc\em_core_generic.h:
 c:\gecko_sdk\platform\common\inc\sl_common.h:
 c:\gecko_sdk\platform\common\inc\sl_assert.h:
-C:\Users\nvd\SimplicityStudio\v5_workspace\silmotion_xG12\autogen/sl_component_catalog.h:
-C:\Users\nvd\SimplicityStudio\v5_workspace\silmotion_xG12\config/emlib_core_debug_config.h:
+E:\AIoT\Project\Nova\silmotion_xG12\autogen/sl_component_catalog.h:
+E:\AIoT\Project\Nova\silmotion_xG12\config/emlib_core_debug_config.h:
 c:\gecko_sdk\platform\emlib\inc\em_cmu_compat.h:
 c:\gecko_sdk\platform\emlib\inc\em_gpio.h:
 c:\gecko_sdk\platform\emlib\inc\sli_em_cmu.h:
 c:\gecko_sdk\hardware\driver\mx25_flash_shutdown\inc\sl_mx25_flash_shutdown_usart\sl_mx25_flash_shutdown.h:
-C:\Users\nvd\SimplicityStudio\v5_workspace\silmotion_xG12\config/sl_mx25_flash_shutdown_usart_config.h:
+E:\AIoT\Project\Nova\silmotion_xG12\config/sl_mx25_flash_shutdown_usart_config.h:
