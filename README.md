@@ -4,6 +4,11 @@
 4. Download [ReNode](https://github.com/renode/renode/releases/download/v1.15.3/renode_1.15.3.msi) to emulate EFR32MG24
 
 
-## UART
+## USART
 - TRansmit: **frame1.bin, size_frame1, frame2.bin, size_frame2** to xG24 
 - Receive: direction from xG24
+
+## Silmotion_xG12
+- App.c flow chart
+
+![appflow](assets/appflow.png)
