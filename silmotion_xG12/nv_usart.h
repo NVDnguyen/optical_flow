@@ -26,4 +26,5 @@ void usart_set_tx_callback(usart_tx_callback_t cb);
 // Transmit a byte (non-blocking)
 void usart_send(uint8_t data);
 
+int usart_printf(const char *format, ...);
 #endif // USART_H

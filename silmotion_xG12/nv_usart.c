@@ -13,12 +13,15 @@
  * Based on Silicon Labs example for xG12 (main_xg1_xg12_xg13_xg14.c).
  */
 #include <stdio.h>
+#include <string.h>
+#include <stdarg.h>
 #include "nv_usart.h"
 #include "em_device.h"
 #include "em_cmu.h"
 #include "em_gpio.h"
 #include "em_usart.h"
 #include "bsp.h"
+#define USART_TX_BUFFER_SIZE 128
 
 // Callback function pointers
 static usart_rx_callback_t rx_callback = NULL;
@@ -130,4 +133,25 @@ void USART2_TX_IRQHandler(void)
   if (tx_callback != NULL) {
     tx_callback();
   }
+}
+
+/*
+ * USART printf
+ * */
+int usart_printf(const char *format, ...) {
+    char buffer[USART_TX_BUFFER_SIZE];
+    va_list args;
+    va_start(args, format);
+
+
+    int len = vsnprintf(buffer, sizeof(buffer), format, args);
+    va_end(args);
+
+    if (len > 0) {
+        for (int i = 0; i < len; i++) {
+            usart_send((uint8_t)buffer[i]);
+        }
+    }
+
+    return len;
 }
