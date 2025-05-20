@@ -5,7 +5,7 @@
 void rgb_to_grayscale(unsigned char *rgb, unsigned char *gray, int width, int height, int channels) {
     if (channels == 1) {
         memcpy(gray, rgb, width * height);
-    } else if (channels == 3) {
+    } else if (channels == 3) {  
         for (int i = 0; i < width * height; i++) {
             unsigned char r = rgb[i * 3];
             unsigned char g = rgb[i * 3 + 1];

@@ -7,8 +7,7 @@ cd .\algo\optical-flow\
 C:\msys64\usr\bin\make.exe # change to your path
 
 # run
-.\build\run.exe frame1.jpg frame2.jpg
-
+.\build\run.exe 
 ```
 
 # GPT: Giải thích thuật toán [Lucas-Kanade](https://gist.github.com/TheVaffel/991ed8f43d8e526ea70935f05ebf1c04) 

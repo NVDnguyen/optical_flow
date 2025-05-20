@@ -21,10 +21,11 @@ def jpg_to_c(input_path):
 
         filename_without_ext = os.path.splitext(os.path.basename(input_path))[0]
         array_name = filename_without_ext.replace('-', '_').replace(' ', '_')
-        output_path = os.path.join(os.getcwd(), filename_without_ext + '.c')
-
+        output_path = os.path.join(os.getcwd(), filename_without_ext + '.h')        
+        
         with open(output_path, 'w') as c_file:
             c_file.write(f'// Generated from {input_path}\n')
+            c_file.write(f'#ifndef {array_name.upper()}_H\n#define {array_name.upper()}_H\n#include <stddef.h>\n')
             c_file.write(f'const unsigned char {array_name}_jpg[] = {{\n')
             for i, byte in enumerate(jpg_data):
                 if i % 12 == 0:
@@ -34,6 +35,7 @@ def jpg_to_c(input_path):
                     c_file.write('\n')
             c_file.write('\n};\n')
             c_file.write(f'const unsigned int {array_name}_jpg_len = sizeof({array_name}_jpg);\n')
+            c_file.write(f'#endif // {array_name.upper()}_H\n')
 
         print(f"Successfully converted '{input_path}' to '{output_path}'.")
 
@@ -42,7 +44,7 @@ def jpg_to_c(input_path):
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
-        print("Usage: python jpg_to_c.py <path_to_jpg>")
+        print("Usage: python jpg_to_h.py <path_to_jpg>")
         sys.exit(1)
 
     input_file_path = sys.argv[1]
