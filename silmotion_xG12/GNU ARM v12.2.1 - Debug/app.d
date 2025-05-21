@@ -76,7 +76,8 @@ app.o: ../app.c \
  c:\gecko_sdk\platform\emlib\inc\em_eusart.h \
  c:\gecko_sdk\platform\emlib\inc\em_gpio.h \
  c:\gecko_sdk\platform\service\sleeptimer\inc\sl_sleeptimer.h \
- ../nv_optical_flow.h ../stb_image.h ../frame1.h ../frame2.h
+ ../nv_optical_flow.h ../nv_ov2640.h ../frame1_rgb565.h \
+ ../frame2_rgb565.h
 c:\gecko_sdk\platform\common\toolchain\inc\sl_gcc_preinclude.h:
 E:\AIoT\Project\Nova\silmotion_xG12/nv_usart.h:
 c:\gecko_sdk\platform\device\siliconlabs\efr32mg12p\include\em_device.h:
@@ -155,6 +156,6 @@ c:\gecko_sdk\platform\emlib\inc\em_eusart.h:
 c:\gecko_sdk\platform\emlib\inc\em_gpio.h:
 c:\gecko_sdk\platform\service\sleeptimer\inc\sl_sleeptimer.h:
 ../nv_optical_flow.h:
-../stb_image.h:
-../frame1.h:
-../frame2.h:
+../nv_ov2640.h:
+../frame1_rgb565.h:
+../frame2_rgb565.h:

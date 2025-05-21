@@ -1,23 +1,33 @@
 #include "nv_optical_flow.h"
 #include <stdlib.h>
 #include <string.h>
+#include <math.h>
+typedef struct {
+    int x, y;
+    int score;
+} Candidate;
+void rgb565_to_grayscale(uint16_t *rgb565, unsigned char *gray, int width, int height) {
+    for (int i = 0; i < width * height; i++) {
+        uint16_t pixel = rgb565[i];
+        unsigned char r = (pixel >> 11) & 0x1F;  // 5 bits red
+        unsigned char g = (pixel >> 5) & 0x3F;   // 6 bits green
+        unsigned char b = pixel & 0x1F;          // 5 bits blue
 
-void rgb_to_grayscale(unsigned char *rgb, unsigned char *gray, int width, int height, int channels) {
-    if (channels == 1) {
-        memcpy(gray, rgb, width * height);
-    } else if (channels == 3) {
-        for (int i = 0; i < width * height; i++) {
-            unsigned char r = rgb[i * 3];
-            unsigned char g = rgb[i * 3 + 1];
-            unsigned char b = rgb[i * 3 + 2];
-            gray[i] = (r * 30 + g * 59 + b * 11) / 100;
-        }
+        // Convert to 8-bit values
+        r = (r * 255) / 31;
+        g = (g * 255) / 63;
+        b = (b * 255) / 31;
+
+        // Calculate grayscale value using weighted sum
+        gray[i] = (r * 30 + g * 59 + b * 11) / 100;
     }
 
+    // brightness adjustment
     for (int i = 0; i < width * height; i++) {
-        gray[i] = (gray[i] < 128) ? gray[i] * 3 / 4 : (gray[i] * 5 / 4 > 255 ? 255 : gray[i] * 5 / 4);
+        gray[i] = (gray[i] < 128) ? (gray[i] * 3 / 4) : (gray[i] * 5 / 4 > 255 ? 255 : gray[i] * 5 / 4);
     }
 }
+
 
 void build_image_pyramid(unsigned char *src, unsigned char *dst, int src_width, int src_height) {
     int dst_width = src_width >> 1;
@@ -76,7 +86,75 @@ int find_strong_feature(unsigned char *gray, int width, int height, int32_t *poi
     point[1] = best_y << 14;
     return max_grad >= 30;
 }
+int find_multiple_features(unsigned char *gray, int width, int height, int32_t feature_points[MAX_FEATURES][2], int *num_features) {
+    int search_radius = 50;
+    int cx = width / 2, cy = height / 2;
+    int feature_count = 0;
+    Candidate candidates[10]; // Store potential features
+    int candidate_count = 0;
 
+    // Compute corner response (Shi-Tomasi)
+    for (int y = cy - search_radius; y <= cy + search_radius; y++) {
+        if (y < WINDOW_SIZE / 2 || y >= height - WINDOW_SIZE / 2) continue;
+        for (int x = cx - search_radius; x <= cx + search_radius; x++) {
+            if (x < WINDOW_SIZE / 2 || x >= width - WINDOW_SIZE / 2) continue;
+
+            int Ix = (-gray[(y-1)*width + (x-1)] + gray[(y-1)*width + (x+1)] +
+                      -2*gray[y*width + (x-1)] + 2*gray[y*width + (x+1)] +
+                      -gray[(y+1)*width + (x-1)] + gray[(y+1)*width + (x+1)]) >> 1;
+            int Iy = (-gray[(y-1)*width + (x-1)] - 2*gray[(y-1)*width + x] - gray[(y-1)*width + (x+1)] +
+                      gray[(y+1)*width + (x-1)] + 2*gray[(y+1)*width + x] + gray[(y+1)*width + (x+1)]) >> 1;
+
+            int Ixx = Ix * Ix;
+            int Iyy = Iy * Iy;
+            int Ixy = Ix * Iy;
+            int score = (Ixx + Iyy) - sqrt((Ixx - Iyy) * (Ixx - Iyy) + 4 * Ixy * Ixy);
+
+            if (score > 100) {
+                candidates[candidate_count].x = x;
+                candidates[candidate_count].y = y;
+                candidates[candidate_count].score = score;
+                candidate_count++;
+            }
+        }
+    }
+
+    // Sort candidates by score (descending)
+    for (int i = 0; i < candidate_count - 1; i++) {
+        for (int j = i + 1; j < candidate_count; j++) {
+            if (candidates[j].score > candidates[i].score) {
+                Candidate temp = candidates[i];
+                candidates[i] = candidates[j];
+                candidates[j] = temp;
+            }
+        }
+    }
+
+    // Select up to MAX_FEATURES, ensuring spatial separation
+    for (int i = 0; i < candidate_count && feature_count < MAX_FEATURES; i++) {
+        int x = candidates[i].x;
+        int y = candidates[i].y;
+        int valid = 1;
+
+        for (int j = 0; j < feature_count; j++) {
+            int dx = (feature_points[j][0] >> Q15_SHIFT) - x;
+            int dy = (feature_points[j][1] >> Q15_SHIFT) - y;
+            if (sqrt(dx * dx + dy * dy) < MIN_DISTANCE) {
+                valid = 0;
+                break;
+            }
+        }
+
+        if (valid) {
+            feature_points[feature_count][0] = x << Q15_SHIFT;
+            feature_points[feature_count][1] = y << Q15_SHIFT;
+            feature_count++;
+        }
+    }
+
+    *num_features = feature_count;
+    return feature_count > 0;
+}
 int lucas_kanade_at_level(unsigned char *pyr1, unsigned char *pyr2, int16_t *gradx, int16_t *grady,
                           int32_t *p0, int32_t *p1, int width, int height) {
     int32_t x = p0[0] >> 14, y = p0[1] >> 14;

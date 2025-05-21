@@ -14,13 +14,10 @@
 #include "em_gpio.h"
 #include "sl_sleeptimer.h"
 #include "nv_optical_flow.h"
-#define STBI_NO_STDIO
-#define STB_IMAGE_IMPLEMENTATION
-#include "stb_image.h"
-#include <inttypes.h>
+#include "nv_ov2640.h"
 
-#include "frame1.h"
-#include "frame2.h"
+#define STBI_NO_STDIO
+#include <inttypes.h>
 
 #define MAX_BUFFER_SIZE (WIDTH * HEIGHT)
 #define PYR_SIZE (MAX_BUFFER_SIZE + (MAX_BUFFER_SIZE >> 2))
@@ -34,6 +31,14 @@ typedef enum {
   LOAD_FAIL
 } status_t;
 
+typedef struct {
+    unsigned char *pyr[PYR_LEVELS];
+    int16_t *gradx[PYR_LEVELS];
+    int16_t *grady[PYR_LEVELS];
+    int32_t feature_point[2];
+    int valid_feature;
+} FrameData;
+
 /********************************************************************************//**
  * Static Functions
  ***********************************************************************************/
@@ -41,90 +46,74 @@ static unsigned char pyr_buffer[PYR_SIZE];
 static unsigned char gray_buffer[MAX_BUFFER_SIZE];
 
 static void rx_callback(uint8_t data) {
-  usart_printf("OK\n");
+    usart_printf("OK:\n");
 }
 
-static void cleanup_image_resources(unsigned char *img) {
-  if (img) stbi_image_free(img);
-}
-static int process_frame(int frame, int32_t p0[2], int32_t p1[2], int *valid_frame1, int32_t *dy) {
-    const unsigned char *frame_data = (frame == 1) ? frame1_jpg : frame2_jpg;
-    unsigned int frame_len = (frame == 1) ? frame1_jpg_len : frame2_jpg_len;
-    usart_printf("Frame%d: %u bytes\n", frame, frame_len);
-
-    int width, height, channels;
-    unsigned char *img = stbi_load_from_memory(frame_data, frame_len, &width, &height, &channels, 0);
-    if (!img || width != WIDTH || height != HEIGHT) {
-        usart_printf("Error: Image size does not match\n");
-        cleanup_image_resources(img);
+static int process_single_frame(int frame, FrameData *frame_data) {
+    uint16_t *img = NULL;
+    usart_printf("%d: Processing frame\n", frame);
+    if (ov2640_capture_frame(&img, frame) == 1) {
+        usart_printf("Error: Cannot load frame %d to RAM.\n", frame);
         return ERROR;
     }
-
-    if (channels != 3) {
-        usart_printf("Error: Image is not RGB\n");
-        cleanup_image_resources(img);
-        return ERROR;
-    }
-
-    rgb_to_grayscale(img, gray_buffer, WIDTH, HEIGHT, channels);
-    cleanup_image_resources(img);
+    rgb565_to_grayscale(img, gray_buffer, WIDTH, HEIGHT);
+    usart_printf("%d: Converted frame to grayscale\n", frame);
 
     // Build pyramid for current frame
-    unsigned char *pyr[PYR_LEVELS];
-    pyr[0] = pyr_buffer;
-    pyr[1] = pyr_buffer + MAX_BUFFER_SIZE;
-    memcpy(pyr[0], gray_buffer, WIDTH * HEIGHT);
+    frame_data->pyr[0] = pyr_buffer;
+    frame_data->pyr[1] = pyr_buffer + MAX_BUFFER_SIZE;
+    memcpy(frame_data->pyr[0], gray_buffer, WIDTH * HEIGHT);
 
     for (int l = 1; l < PYR_LEVELS; l++) {
         int w = WIDTH >> l;
         int h = HEIGHT >> l;
-        build_image_pyramid(pyr[l - 1], pyr[l], w * 2, h * 2);
+        build_image_pyramid(frame_data->pyr[l - 1], frame_data->pyr[l], w * 2, h * 2);
+        usart_printf("%d: Built pyramid level %d(size: %dx%d)\n",frame, l, w, h);
     }
 
-    static int16_t grad_buffer_local[MAX_BUFFER_SIZE];
-    int16_t *gradx[PYR_LEVELS];
-    int16_t *grady[PYR_LEVELS];
+    static int16_t grad_buffer_local[PYR_SIZE * 2];
+    for (int l = 0; l < PYR_LEVELS; l++) {
+        int w = WIDTH >> l;
+        int h = HEIGHT >> l;
+        frame_data->gradx[l] = grad_buffer_local;
+        frame_data->grady[l] = grad_buffer_local + (w * h / 2);
+        compute_gradient(frame_data->pyr[l], frame_data->gradx[l], frame_data->grady[l], w, h);
+        usart_printf("%d: Computed gradients, level %d\n", frame, l);
+    }
 
-    if (frame == 1) {
-        for (int l = 0; l < PYR_LEVELS; l++) {
-            int w = WIDTH >> l;
-            int h = HEIGHT >> l;
-            gradx[l] = grad_buffer_local;
-            grady[l] = grad_buffer_local + (w * h / 2);
-            compute_gradient(pyr[l], gradx[l], grady[l], w, h);
-            int idx = (h / 2) * w + (w / 2);
-            usart_printf("Gradient at (%d,%d): (%d,%d)\n", w / 2, h / 2, gradx[l][idx], grady[l][idx]);
-        }
-
-        *valid_frame1 = find_strong_feature(gray_buffer, WIDTH, HEIGHT, p0);
-        usart_printf("Feature point: (%" PRId32 ",%" PRId32 ")\n", p0[0] >> Q15_SHIFT, p0[1] >> Q15_SHIFT);
-        if (*valid_frame1) {
-            usart_printf("Valid feature point found\n");
+    // find specific feature point
+    if(frame == 1){
+        frame_data->valid_feature = find_strong_feature(gray_buffer, WIDTH, HEIGHT, frame_data->feature_point);
+        if (!frame_data->valid_feature) {
+            frame_data->feature_point[0] = (WIDTH / 2) << Q15_SHIFT; // x
+            frame_data->feature_point[1] = (HEIGHT / 2) << Q15_SHIFT; // y
+            usart_printf("No strong feature found for frame %d, using center (%ld,%ld)\n",
+                         frame, frame_data->feature_point[0] >> Q15_SHIFT, frame_data->feature_point[1] >> Q15_SHIFT);
         } else {
-            usart_printf("No valid feature point found\n");
-            usart_printf("No strong feature near center\n");
-            p0[0] = (WIDTH / 2) << Q15_SHIFT;
-            p0[1] = (HEIGHT / 2) << Q15_SHIFT;
-        }
-    } else if (*valid_frame1 || (p0[0] != 0 && p0[1] != 0)) {
-        unsigned char *pyr2[PYR_LEVELS] = { pyr_buffer, pyr_buffer + MAX_BUFFER_SIZE };
-        memcpy(pyr2[0], gray_buffer, WIDTH * HEIGHT);
-        for (int l = 1; l < PYR_LEVELS; l++) {
-            int w = WIDTH >> l;
-            int h = HEIGHT >> l;
-            build_image_pyramid(pyr2[l - 1], pyr2[l], w * 2, h * 2);
-        }
-
-        int valid = lucas_kanade_pyramid(pyr, pyr2, gradx, grady, p0, p1, WIDTH, HEIGHT, PYR_LEVELS);
-        if (!valid) {
-            usart_printf("Optical flow failed\n");
-            *dy = 0;
-        } else {
-            *dy = p1[1] - p0[1];
-            usart_printf("Optical flow valid: (%" PRId32 ",%" PRId32 ")\n", p1[0] >> Q15_SHIFT, p1[1] >> Q15_SHIFT);
+            usart_printf("%d: Found feature for frame at (%ld,%ld)\n",
+                         frame, frame_data->feature_point[0] >> Q15_SHIFT, frame_data->feature_point[1] >> Q15_SHIFT);
         }
     }
+
     return OK;
+}
+
+static int calculate_motion(FrameData *prev_frame, FrameData *curr_frame, int32_t p0[2], int32_t p1[2], int32_t *dy) {
+    usart_printf("Calculating motion from prev to curr frame\n");
+    usart_printf("Initial feature point: (%ld,%ld)\n", p0[0] >> Q15_SHIFT, p0[1] >> Q15_SHIFT);
+    int valid = lucas_kanade_pyramid(prev_frame->pyr, curr_frame->pyr,
+                                     prev_frame->gradx, prev_frame->grady,
+                                     p0, p1, WIDTH, HEIGHT, PYR_LEVELS);
+    if (!valid) {
+        usart_printf("Optical flow failed\n");
+        *dy = 0;
+        return ERROR;
+    } else {
+        *dy = p1[1] - p0[1];
+        usart_printf("Optical flow valid: (%ld,%ld)\n", p1[0] >> Q15_SHIFT, p1[1] >> Q15_SHIFT);
+        usart_printf("Computed dy = %ld (approx %ld pixels)\n", *dy, *dy >> Q15_SHIFT);
+        return OK;
+    }
 }
 
 /*********************************************************************************
@@ -132,27 +121,29 @@ static int process_frame(int frame, int32_t p0[2], int32_t p1[2], int *valid_fra
  ***********************************************************************************/
 void app_init(void) {
     usart_init();
+    ov2640_init(HEIGHT, WIDTH);
     usart_set_rx_callback(rx_callback);
     usart_printf("Hello from xG24\nStarting...\n");
 
-    int32_t p0[2] = {0, 0}, p1[2] = {0, 0};
-    int valid_frame1 = 0;
+    FrameData frame1_data, frame2_data;
     int32_t dy = 0;
 
-    for (int frame = 1; frame <= 2; frame++) {
-        process_frame(frame, p0, p1, &valid_frame1, &dy);
-    }
-    // Report results
+    process_single_frame(1, &frame1_data);
+    process_single_frame(2, &frame2_data);
+    calculate_motion(&frame1_data, &frame2_data, frame1_data.feature_point, frame2_data.feature_point, &dy);
+
     const int16_t THRESHOLD = 205; // 0.0125 in Q15
-    if (dy < -THRESHOLD) {
-        usart_printf("Up\n");
-    } else if (dy > THRESHOLD) {
-        usart_printf("Down\n");
+    if (dy > THRESHOLD) {
+        usart_printf("=> Up\n");
+    } else if (dy < -THRESHOLD) {
+        usart_printf("=> Down\n");
     } else {
-        usart_printf("Unknown\n");
-        usart_printf("Final dy=%ld\n", dy);
+        usart_printf("=> Unknown\n");
     }
+    usart_printf("Final dy=%ld\n", dy);
+
 }
+
 /********************************************************************************//**
  * App ticking function.
  ***********************************************************************************/

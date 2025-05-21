@@ -24,13 +24,13 @@
  * 2. Altered source versions must be plainly marked as such, and must not be
  *    misrepresented as being the original software.
  * 3. This notice may not be removed or altered from any source distribution.
- * Flash up to 1.5M
- * Ram up to 512K
+ * Flash up to 1.5MB
+ * Ram up to 256KB
  ******************************************************************************/
  MEMORY
  {
    FLASH      (rx)  : ORIGIN = 0x0, LENGTH = 0x180000 
-   RAM        (rwx) : ORIGIN = 0x20000000, LENGTH = 0x7D000 
+   RAM        (rwx) : ORIGIN = 0x20000000, LENGTH = 0x40000   
  }
 
 ENTRY(Reset_Handler)

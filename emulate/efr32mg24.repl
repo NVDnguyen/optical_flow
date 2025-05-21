@@ -1,7 +1,7 @@
 using "./efr32mg12.repl"
 
 sram:
-    size: 0x7D000000
+    size: 0x00040000
 flash:
     size: 0x00180000
 
