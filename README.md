@@ -5,10 +5,32 @@
 
 
 ## USART
-- TRansmit: **frame1.bin, size_frame1, frame2.bin, size_frame2** to xG24 
-- Receive: direction from xG24
+- TRansmit: direction motion
 
 ## Silmotion_xG12
-- App.c flow chart
+- Main flow
+
+![mainflow](assets/mainflow.png)
+
+
+- Caculate motion flow
 
 ![appflow](assets/appflow.png)
+
+
+
+
+## RAM Usage Timeline (Summary)
+
+| **Phase**              | **Memory Type** | **Variables/Buffers**                                                                                        | **RAM Usage (Total)** |
+| ---------------------- | --------------- | ------------------------------------------------------------------------------------------------------------ | --------------------- |
+| **Initialization**     | **Heap**        | `frame_buffer` (\~28.8 KB)                                                                                   | **\~29 KB**           |
+|                        | **Stack**       | `frame1_data`, `frame2_data` (\~200 B)                                                                       |                       |
+| **Frame Processing 1** | **Heap**        | `frame_buffer` (\~28.8 KB), `gray_buffer` (\~14.4 KB), `pyr_buffer` (\~18 KB), `grad_buffer_local` (\~72 KB) | **\~133.5 KB**        |
+|                        | **Stack**       | Temporary variables (\~100 B)                                                                                |                       |
+| **Frame Processing 2** | **Heap**        | Reuses `frame_buffer`, `gray_buffer`, `pyr_buffer`, `grad_buffer_local`                                      | **\~133.5 KB**        |
+|                        | **Stack**       | Temporary variables (\~100 B)                                                                                |                       |
+| **Motion Calculation** | **Heap**        | Reuses `frame_buffer`, `gray_buffer`, `pyr_buffer`, `grad_buffer_local`                                      | **\~133.6 KB**        |
+|                        | **Stack**       | Temporary variables (\~200 B)                                                                                |                       |
+| **Final State**        | **Heap**        | Persistent buffers: `frame_buffer`, `gray_buffer`, `pyr_buffer`, `grad_buffer_local`                         | **\~133.2 KB**        |
+|                        | **Stack**       | Released after `app_init`                                                                                    |                       |

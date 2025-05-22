@@ -35,13 +35,10 @@ static void init_gpio(void)
   // Enable GPIO clock
   CMU_ClockEnable(cmuClock_GPIO, true);
 
-  // Configure VCOM transmit pin as output
   GPIO_PinModeSet(BSP_VCOM_TXPORT, BSP_VCOM_TXPIN, gpioModePushPull, 1);
 
-  // Configure VCOM receive pin as input
   GPIO_PinModeSet(BSP_VCOM_RXPORT, BSP_VCOM_RXPIN, gpioModeInput, 0);
 
-  // Enable VCOM connection to board controller
   GPIO_PinModeSet(BSP_VCOM_ENABLE_PORT, BSP_VCOM_ENABLE_PIN, gpioModePushPull, 1);
 }
 
@@ -53,10 +50,7 @@ void usart_init(void)
   // Enable USART2 clock
   CMU_ClockEnable(cmuClock_USART2, true);
 
-  // Default asynchronous initializer (115.2 Kbps, 8N1, no flow control)
   USART_InitAsync_TypeDef init = USART_INITASYNC_DEFAULT;
-
-  // Configure and enable USART2
   USART_InitAsync(USART2, &init);
 
   // Configure routing for VCOM pins
@@ -69,7 +63,6 @@ void usart_init(void)
   NVIC_ClearPendingIRQ(USART2_TX_IRQn);
   NVIC_EnableIRQ(USART2_TX_IRQn);
 
-  // Initialize GPIO for VCOM
   init_gpio();
 
   // Enable RX data valid interrupt

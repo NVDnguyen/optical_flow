@@ -11,7 +11,7 @@
 #define HEIGHT 90
 #define CHANNEL 3
 #define PYR_LEVELS 2
-#define WINDOW_SIZE 5
+#define WINDOW_SIZE 17
 #define NUM_ITER 5
 
 /**/
