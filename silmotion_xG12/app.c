@@ -68,7 +68,7 @@ static int process_single_frame(int frame, FrameData *frame_data) {
         int w = WIDTH >> l;
         int h = HEIGHT >> l;
         build_image_pyramid(frame_data->pyr[l - 1], frame_data->pyr[l], w * 2, h * 2);
-        usart_printf("%d: Built pyramid level %d(size: %dx%d)\n",frame, l, w, h);
+        usart_printf("%d: Built p6yramid level %d(size: %dx%d)\n",frame, l, w, h);
     }
 
     static int16_t grad_buffer_local[PYR_SIZE * 2];
